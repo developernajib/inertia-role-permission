@@ -23,7 +23,6 @@ import { Head, Link } from '@inertiajs/vue3';
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         You're logged in!
                     </div>
-                    <Link :href="route('admin.dashboard')">Admin Dashboard</Link>
                 </div>
             </div>
         </div>

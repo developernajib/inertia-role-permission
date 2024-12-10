@@ -22,7 +22,7 @@ const { hasRole } = usePermission();
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex shrink-0 items-center">
-                                <Link :href="route('admin.dashboard')">
+                                <Link :href="route('dashboard')">
                                 <ApplicationLogo
                                     class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                                 </Link>
@@ -33,7 +33,7 @@ const { hasRole } = usePermission();
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink v-if="hasRole('admin')" :href="route('admin.dashboard')"
+                                <NavLink :href="route('admin.dashboard')"
                                     :active="route().current('admin.dashboard')">
                                     Admin Dashboard
                                 </NavLink>
@@ -104,8 +104,8 @@ const { hasRole } = usePermission();
                     hidden: !showingNavigationDropdown,
                 }" class="sm:hidden">
                     <div class="space-y-1 pb-3 pt-2">
-                        <ResponsiveNavLink :href="route('admin.dashboard')"
-                            :active="route().current('admin.dashboard')">
+                        <ResponsiveNavLink :href="route('dashboard')"
+                            :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
                     </div>
@@ -136,7 +136,6 @@ const { hasRole } = usePermission();
             <!-- Page Heading -->
             <header class="bg-white shadow dark:bg-gray-800" v-if="$slots.header">
                 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    {{ $page.props.auth.user }}
                     <slot name="header" />
                 </div>
             </header>
