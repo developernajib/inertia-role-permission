@@ -2,10 +2,11 @@
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import Table from '@/Components/Admin/Table.vue';
-
 import TableRow from '@/Components/Admin/chunks/TableRow.vue';
 import TableHeader from '@/Components/Admin/chunks/TableHeader.vue';
 import TableData from '@/Components/Admin/chunks/TableData.vue';
+
+import { helper } from '@/composables/helper.js';
 
 const props = defineProps({
     permissions: {
@@ -14,23 +15,13 @@ const props = defineProps({
     },
 });
 
-function capitalize(str) {
-    return str ? str.charAt(0).toUpperCase() + str.slice(1) : '';
-}
+const { capitalize } = helper();
 </script>
 
 <template>
-    <Head title="Admin Dashboard" />
+    <Head title="Permissions List" />
 
     <AdminLayout>
-        <template #header>
-            <h2
-                class="text-xl font-semibold leading-tight  dark:text-gray-200"
-            >
-                Permissions List
-            </h2>
-        </template>
-
         <div class="mx-auto max-w-7xl py-4">
             <p class="mb-4">Permissions List</p>
             <Table>
