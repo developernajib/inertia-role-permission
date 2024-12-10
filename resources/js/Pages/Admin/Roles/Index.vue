@@ -1,6 +1,7 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import Table from '@/Components/Admin/Table.vue';
 </script>
 
 <template>
@@ -11,12 +12,13 @@ import { Head } from '@inertiajs/vue3';
             <h2
                 class="text-xl font-semibold leading-tight  dark:text-gray-200"
             >
-                Admin Dashboard
+                Roles List
             </h2>
         </template>
 
         <div class="py-4">
-            <p class="text-2xl font-bold">Welcome, {{ $page.props.auth.user.name }}</p>
+            <h2 class="mb-4">Roles List</h2>
+            <Table />
         </div>
     </AdminLayout>
 </template>

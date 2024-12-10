@@ -1,95 +1,82 @@
 <script setup>
+import SidebarLink from '@/Components/Admin/SidebarLink.vue';
 import { Link } from '@inertiajs/vue3';
 </script>
 <template>
-
     <div>
-        
         <aside
-        class="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
-        <div>
-            <div class="-mx-6 px-6 py-4">
-                <a href="#" title="DeveloperNajib" class="flex justify-center">
-                    <img src="@/assets/img/DevNajibLogo.png" class="w-36" alt="DeveloperNajib">
-                </a>
+            class="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+            <div>
+                <div class="-mx-6 px-6 py-4">
+                    <a href="#" title="DeveloperNajib" class="flex justify-center">
+                        <img src="@/assets/img/DevNajibLogo.png" class="w-36" alt="DeveloperNajib">
+                    </a>
+                </div>
+
+                <ul class="space-y-2 tracking-wide mt-4">
+                    <li>
+                        <SidebarLink :href="route('dashboard')" :active="route().current('dashboard')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
+                            </svg>
+                            <span class="-mr-1 font-medium">User Dashboard</span>
+                        </SidebarLink>
+                    </li>
+                    <li>
+                        <SidebarLink :href="route('admin.dashboard')" :active="route().current('admin.dashboard')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
+                            </svg>
+                            <span class="-mr-1 font-medium">Admin Dashboard</span>
+                        </SidebarLink>
+                    </li>
+                    <li>
+                        <SidebarLink :href="route('users.index')" :active="route().current('users.index')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                            </svg>
+                            <span class="-mr-1 font-medium">Users</span>
+                        </SidebarLink>
+                    </li>
+                    <li>
+                        <SidebarLink :href="route('roles.index')" :active="route().current('roles.index')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M4.5 12a7.5 7.5 0 0 0 15 0m-15 0a7.5 7.5 0 1 1 15 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077 1.41-.513m14.095-5.13 1.41-.513M5.106 17.785l1.15-.964m11.49-9.642 1.149-.964M7.501 19.795l.75-1.3m7.5-12.99.75-1.3m-6.063 16.658.26-1.477m2.605-14.772.26-1.477m0 17.726-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205 12 12m6.894 5.785-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495" />
+                            </svg>
+                            <span class="-mr-1 font-medium">Roles</span>
+                        </SidebarLink>
+                    </li>
+                    <li>
+                        <SidebarLink :href="route('permissions.index')" :active="route().current('permissions.index')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M7.864 4.243A7.5 7.5 0 0 1 19.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 0 0 4.5 10.5a7.464 7.464 0 0 1-1.15 3.993m1.989 3.559A11.209 11.209 0 0 0 8.25 10.5a3.75 3.75 0 1 1 7.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 0 1-3.6 9.75m6.633-4.596a18.666 18.666 0 0 1-2.485 5.33" />
+                            </svg>
+                            <span class="-mr-1 font-medium">Permissions</span>
+                        </SidebarLink>
+                    </li>
+                </ul>
             </div>
 
-            <ul class="space-y-2 tracking-wide mt-4">
-                <li>
-                    <Link :href="route('dashboard')" aria-label="dashboard"
-                        class="cursor-pointer relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400">
-                        <svg class="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
-                            <path
-                                d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
-                                class="fill-current text-cyan-400 dark:fill-slate-600"></path>
-                            <path d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
-                                class="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
-                            <path d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
-                                class="fill-current group-hover:text-sky-300"></path>
-                        </svg>
-                        <span class="-mr-1 font-medium">Dashboard</span>
-                    </Link>
-                </li>
-                <li>
-                    <a href="#" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path class="fill-current text-gray-300 group-hover:text-cyan-300" fill-rule="evenodd"
-                                d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
-                                clip-rule="evenodd" />
-                            <path class="fill-current text-gray-600 group-hover:text-cyan-600"
-                                d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z" />
-                        </svg>
-                        <span class="group-hover:text-gray-700">Categories</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
-                                d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-                                clip-rule="evenodd" />
-                            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
-                                d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
-                        </svg>
-                        <span class="group-hover:text-gray-700">Reports</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path class="fill-current text-gray-600 group-hover:text-cyan-600"
-                                d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-                            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
-                                d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
-                        </svg>
-                        <span class="group-hover:text-gray-700">Other data</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
-                                d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-                            <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
-                                d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="group-hover:text-gray-700">Finance</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
-            <button class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                </svg>
-                <span class="group-hover:text-gray-700">Logout</span>
-            </button>
-        </div>
-    </aside>
+            <div class="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
+                <Link :href="route('logout')" method="post" as="button" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group cursor-pointer hover:text-sky-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    <span class="group-hover:text-sky-600">Logout</span>
+                </Link>
+            </div>
+        </aside>
     </div>
 </template>

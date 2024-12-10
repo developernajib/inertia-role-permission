@@ -11,12 +11,12 @@ import { Head } from '@inertiajs/vue3';
             <h2
                 class="text-xl font-semibold leading-tight  dark:text-gray-200"
             >
-                Admin Dashboard
+                Permissions List
             </h2>
         </template>
 
         <div class="py-4">
-            <p class="text-2xl font-bold">Welcome, {{ $page.props.auth.user.name }}</p>
+            <h2>Permissions List</h2>
         </div>
     </AdminLayout>
 </template>
