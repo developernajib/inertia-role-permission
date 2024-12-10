@@ -45,7 +45,7 @@ function capitalize(str) {
                 </template>
                 <TableRow v-for="user in users.data" :key="user.id" class="border-b">
                     <TableData>{{ user.id }}</TableData>
-                    <TableData>{{ user.name }}</TableData>
+                    <TableData>{{ capitalize(user.name) }}</TableData>
                     <TableData>{{ user.email }}</TableData>
                     <TableData>
                         <template v-if="user.roles && user.roles.length > 0">
