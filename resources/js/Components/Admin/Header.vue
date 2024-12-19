@@ -1,6 +1,3 @@
-<script setup>
-import { Link } from '@inertiajs/vue3';
-</script>
 <template>
     <div class="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5 flex items-center">
         <div class="px-6 flex items-center justify-between space-x-4 2xl:container">

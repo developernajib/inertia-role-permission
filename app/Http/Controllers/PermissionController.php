@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use App\Http\Resources\PermissionResource;
+use App\Http\Requests\PermissionRequest;
+
 
 class PermissionController extends Controller
 {
@@ -24,39 +26,36 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Permissions/Create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PermissionRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        Permission::create($request->validated());
+        return to_route('admin.permissions.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Permission $permission)
     {
-        //
+        return Inertia::render('Admin/Permissions/Edit', [
+            'permission' => new PermissionResource($permission)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PermissionRequest $request, Permission $permission)
     {
-        //
+        $permission->update($request->validated());
+
+        return to_route('admin.permissions.index');
     }
 
     /**
@@ -64,6 +63,8 @@ class PermissionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $permission = Permission::findById($id);
+        $permission->delete();
+        return to_route('admin.permissions.index');
     }
 }

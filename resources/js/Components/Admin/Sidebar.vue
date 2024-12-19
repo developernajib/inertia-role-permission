@@ -35,7 +35,7 @@ import { Link } from '@inertiajs/vue3';
                         </SidebarLink>
                     </li>
                     <li>
-                        <SidebarLink :href="route('users.index')" :active="route().current('users.index')">
+                        <SidebarLink :href="route('admin.users.index')" :active="route().current('admin.users.*')">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -45,7 +45,7 @@ import { Link } from '@inertiajs/vue3';
                         </SidebarLink>
                     </li>
                     <li>
-                        <SidebarLink :href="route('roles.index')" :active="route().current('roles.index')">
+                        <SidebarLink :href="route('admin.roles.index')" :active="route().current('admin.roles.*')">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -55,7 +55,7 @@ import { Link } from '@inertiajs/vue3';
                         </SidebarLink>
                     </li>
                     <li>
-                        <SidebarLink :href="route('permissions.index')" :active="route().current('permissions.index')">
+                        <SidebarLink :href="route('admin.permissions.index')" :active="route().current('admin.permissions.*')">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"

@@ -4,10 +4,8 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\RoleResource;
-use App\Http\Resources\PermissionResource;
 
-class UserResource extends JsonResource
+class UserSharedResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,9 +18,9 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'roles' => $this->getRoleNames(),
+            'permissions' => $this->getAllPermissions()->pluck('name'),
             'created_at' => $this->created_at->diffForHumans(),
-            'roles' => RoleResource::collection($this->whenLoaded('roles')),
-            'permissions' => PermissionResource::collection($this->whenLoaded('permissions')),
         ];
     }
 }
