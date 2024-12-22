@@ -4,13 +4,12 @@ import { Head } from '@inertiajs/vue3';
 </script>
 
 <template>
+
     <Head title="Admin Dashboard" />
 
     <AdminLayout>
         <template #header>
-            <h2
-                class="text-xl font-semibold leading-tight  dark:text-gray-200"
-            >
+            <h2 class="text-xl font-semibold leading-tight  dark:text-gray-200">
                 Admin Dashboard
             </h2>
         </template>

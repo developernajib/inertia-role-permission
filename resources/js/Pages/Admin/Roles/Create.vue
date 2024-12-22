@@ -3,7 +3,6 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import PrimaryButton from "@/Components/Admin/PrimaryButton.vue";
 import InputLabel from "@/Components/Admin/chunks/InputLabel.vue";
-import Checkbox from "@/Components/Admin/Checkbox.vue";
 import InputError from "@/Components/Admin/chunks/InputError.vue";
 import TextInput from "@/Components/Admin/TextInput.vue";
 import VueMultiselect from "vue-multiselect";
@@ -24,7 +23,7 @@ const form = useForm({
 
     <AdminLayout>
         <div class="max-w-7xl mx-auto py-4">
-            <div class="flex justify-between">
+            <div class="flex justify-between" v-if="$hasPermission('view.role')">
                 <Link :href="route('admin.roles.index')"
                     class="px-3 py-2 text-white font-semibold bg-sky-500 hover:bg-sky-700 rounded">Back</Link>
             </div>
@@ -43,9 +42,8 @@ const form = useForm({
                         <VueMultiselect v-model="form.permissions" :options="permissions" :multiple="true"
                             :close-on-select="false" placeholder="Pick some" label="name" track-by="id" />
                     </div>
-                    <div class="flex items-center mt-4">
-                        <PrimaryButton :class="{ 'opacity-25': form.processing }"
-                            :disabled="form.processing">
+                    <div class="flex items-center mt-4" v-if="$hasPermission('create.role')">
+                        <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                             Create
                         </PrimaryButton>
                     </div>

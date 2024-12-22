@@ -20,7 +20,7 @@ const form = useForm({
 
 <template>
 
-    <Head title="Update permission" />
+    <Head title="Update Permission" />
 
     <AdminLayout>
         <div class="max-w-7xl mx-auto py-4">
@@ -38,9 +38,8 @@ const form = useForm({
 
                         <InputError class="mt-2" :message="form.errors.name" />
                     </div>
-                    <div class="flex items-center mt-4">
-                        <PrimaryButton :class="{ 'opacity-25': form.processing }"
-                            :disabled="form.processing">
+                    <div class="flex items-center mt-4" v-if="$hasPermission('update.permission')">
+                        <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                             Update
                         </PrimaryButton>
                     </div>

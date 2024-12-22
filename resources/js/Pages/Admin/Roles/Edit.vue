@@ -36,11 +36,11 @@ watch(
 
 <template>
 
-    <Head title="Update role" />
+    <Head title="Update Role" />
 
     <AdminLayout>
         <div class="max-w-7xl mx-auto py-4">
-            <div class="flex justify-between">
+            <div class="flex justify-between" v-if="$hasPermission('view.role')">
                 <Link :href="route('admin.roles.index')"
                     class="px-3 py-2 text-white font-semibold bg-sky-500 hover:bg-sky-700 rounded">Back</Link>
             </div>
@@ -56,11 +56,10 @@ watch(
                     </div>
                     <div class="mt-4">
                         <InputLabel for="permissions" value="Permissions" />
-                        <VueMultiselect v-model="form.permissions" :options="permissions"
-                            :multiple="true" :close-on-select="false" placeholder="Pick some" label="name"
-                            track-by="id" />
+                        <VueMultiselect v-model="form.permissions" :options="permissions" :multiple="true"
+                            :close-on-select="false" placeholder="Pick some" label="name" track-by="id" />
                     </div>
-                    <div class="flex items-center mt-4">
+                    <div class="flex items-center mt-4" v-if="$hasPermission('update.role')">
                         <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                             Update
                         </PrimaryButton>
@@ -83,7 +82,7 @@ watch(
                                 class="border-b">
                                 <TableData>{{ rolePermission.id }}</TableData>
                                 <TableData>{{ rolePermission.name }}</TableData>
-                                <TableData class="space-x-4">
+                                <TableData class="space-x-4" v-if="$hasPermission('destroy.role.permission')">
                                     <Link :href="route('admin.roles.permissions.destroy', [
                                         role.id,
                                         rolePermission.id,

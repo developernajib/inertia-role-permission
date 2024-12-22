@@ -31,8 +31,9 @@ const submit = () => {
 <template>
     <AdminLayout>
 
-        <Head title="Create user" />
-        <div class="max-w-7xl mx-auto mt-4">
+        <Head title="Create User" />
+
+        <div class="max-w-7xl mx-auto mt-4" v-if="$hasPermission('create.user')">
             <div class="flex justify-between">
                 <Link :href="route('admin.users.index')"
                     class="px-3 py-2 text-white font-semibold bg-sky-500 hover:bg-sky-700 rounded">Back</Link>
@@ -86,7 +87,7 @@ const submit = () => {
                         :close-on-select="false" placeholder="Pick some" label="name" track-by="id" />
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
+                <div class="flex items-center justify-end mt-4" v-if="$hasPermission('create.user')">
                     <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                         Create User
                     </PrimaryButton>

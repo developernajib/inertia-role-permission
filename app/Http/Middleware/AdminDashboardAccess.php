@@ -22,8 +22,8 @@ class AdminDashboardAccess
         // Get the authenticated user
         $user = Auth::user()->load('roles');
 
-        // Check if the user has the 'user' role or no roles
-        if ($user && ($user->hasRole('user') || $user->roles->isEmpty())) {
+        // Check if the user has no roles
+        if ($user && $user->roles->isEmpty()) {
             // If the user is unauthorized, return a 403 or redirect
             return Inertia::render('Errors/Forbidden')->toResponse($request);
         }

@@ -33,9 +33,11 @@ const { hasRole } = usePermission();
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink v-if="hasRole('admin')" :href="route('admin.dashboard')"
-                                    :active="route().current('admin.dashboard')">
+                                <NavLink :href="route('admin.dashboard')" :active="route().current('admin.dashboard')">
                                     Admin Dashboard
+                                </NavLink>
+                                <NavLink :href="route('admin.posts.index')" :active="route().current('admin.posts.*')">
+                                    Posts
                                 </NavLink>
                             </div>
                         </div>
@@ -103,13 +105,16 @@ const { hasRole } = usePermission();
                     hidden: !showingNavigationDropdown,
                 }" class="sm:hidden">
                     <div class="space-y-1 pb-3 pt-2">
-                        <ResponsiveNavLink :href="route('dashboard')"
-                            :active="route().current('dashboard')">
+                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('admin.dashboard')" v-if="hasRole('admin')"
                             :active="route().current('admin.dashboard')">
-                            Admin Dashboard
+                            Admin & User Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('admin.posts.index')" v-if="hasRole('admin')"
+                            :active="route().current('admin.posts.*')">
+                            Posts
                         </ResponsiveNavLink>
                     </div>
 

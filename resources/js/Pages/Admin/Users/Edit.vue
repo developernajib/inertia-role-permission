@@ -49,9 +49,10 @@ watch(
 <template>
     <AdminLayout>
 
-        <Head title="Create user" />
+        <Head title="Create User" />
+
         <div class="max-w-7xl mx-auto mt-4">
-            <div class="flex justify-between">
+            <div class="flex justify-between" v-if="$hasPermission('view.user')">
                 <Link :href="route('admin.users.index')"
                     class="px-3 py-2 text-white font-semibold bg-sky-500 hover:bg-sky-700 rounded">Back</Link>
             </div>
@@ -87,7 +88,7 @@ watch(
                         :close-on-select="false" placeholder="Pick some" label="name" track-by="id" />
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
+                <div class="flex items-center justify-end mt-4" v-if="$hasPermission('update.user')">
                     <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                         Update User
                     </PrimaryButton>
@@ -109,7 +110,7 @@ watch(
                         <TableRow v-for="userRole in user.roles" :key="userRole.id" class="border-b">
                             <TableData>{{ userRole.id }}</TableData>
                             <TableData>{{ userRole.name }}</TableData>
-                            <TableData class="space-x-4">
+                            <TableData class="space-x-4" v-if="$hasPermission('destroy.user.role')">
                                 <Link :href="route('admin.users.roles.destroy', [user.id, userRole.id])" method="DELETE"
                                     as="button" class="text-red-400 hover:text-red-600" preserve-scroll>Revoke</Link>
                             </TableData>
