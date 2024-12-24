@@ -9,14 +9,24 @@ use App\Http\Resources\RoleResource;
 use App\Http\Resources\PermissionResource;
 use App\Http\Requests\RoleRequest;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 {
+    /**
+     * Initialize the PermissionController with middleware that sets the authenticated user.
+     */
+    public function __construct()
+    {
+        $this->user = auth()->user();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        Gate::authorize('viewAny', $this->user);
         return Inertia::render('Admin/Roles/Index', [
             'roles' => RoleResource::collection(Role::all()),
         ]);
@@ -27,6 +37,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', $this->user);
         return Inertia::render('Admin/Roles/Create', [
             'permissions' => PermissionResource::collection(Permission::all()),
         ]);
@@ -37,6 +48,7 @@ class RoleController extends Controller
      */
     public function store(RoleRequest $request)
     {
+        Gate::authorize('create', $this->user);
         $role = Role::create(['name' => $request->name]);
         if ($request->has('permissions')) {
             $role->syncPermissions($request->input('permissions.*.name'));
@@ -50,6 +62,7 @@ class RoleController extends Controller
     public function edit(string $id)
     {
         $role = Role::findById($id);
+        Gate::authorize('update', $this->user);
         $role->load('permissions');
 
         return Inertia::render('Admin/Roles/Edit', [
@@ -64,6 +77,7 @@ class RoleController extends Controller
     public function update(RoleRequest $request, string $id)
     {
         $role = Role::findById($id);
+        Gate::authorize('update', $this->user);
         $role->update([
             'name' => $request->name
         ]);
@@ -77,7 +91,9 @@ class RoleController extends Controller
     public function destroy(string $id)
     {
         $role = Role::findById($id);
+        Gate::authorize('delete', $this->user);
         $role->delete();
         return to_route('admin.roles.index');
     }
 }
+

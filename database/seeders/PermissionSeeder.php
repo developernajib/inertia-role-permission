@@ -42,6 +42,7 @@ class PermissionSeeder extends Seeder
         Permission::insert([
             ['name' => 'destroy.role.permission', 'guard_name' => 'web'],
             ['name' => 'destroy.user.role', 'guard_name' => 'web'],
+            ['name' => 'destroy.user.permission', 'guard_name' => 'web'],
         ]);
     }
 }

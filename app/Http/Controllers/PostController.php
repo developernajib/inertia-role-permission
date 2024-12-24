@@ -7,13 +7,22 @@ use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
+    /**
+     * Initialize the PermissionController with middleware that sets the authenticated user.
+     */
+    public function __construct()
+    {
+        $this->user = auth()->user();
+    }
+
     public function index()
     {
+        Gate::authorize('view', $this->user);
         $posts = Post::all();
-
         return Inertia::render('Admin/Posts/Index', [
             'posts' => PostResource::collection($posts)
         ]);
@@ -21,13 +30,13 @@ class PostController extends Controller
 
     public function create()
     {
-        // $this->authorize('create', Post::class);
+        Gate::authorize('create', $this->user);
         return Inertia::render('Admin/Posts/Create');
     }
 
     public function store(PostRequest $request)
     {
-        // $this->authorize('create', Post::class);
+        Gate::authorize('create', $this->user);
         Post::create($request->validated());
 
         return to_route('admin.posts.index');
@@ -35,7 +44,7 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        // $this->authorize('update', $post);
+        Gate::authorize('update', $this->user);
         return Inertia::render('Admin/Posts/Edit', [
             'post' => new PostResource($post)
         ]);
@@ -43,7 +52,7 @@ class PostController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
-        $this->authorize('update', $post);
+        Gate::authorize('update', $this->user);
         $post->update($request->validated());
 
         return to_route('admin.posts.index');
@@ -51,7 +60,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        // $this->authorize('delete', $post);
+        Gate::authorize('delete', $this->user);
         $post->delete();
         return back();
     }

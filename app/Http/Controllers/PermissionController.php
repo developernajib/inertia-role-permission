@@ -7,15 +7,24 @@ use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use App\Http\Resources\PermissionResource;
 use App\Http\Requests\PermissionRequest;
-
+use Illuminate\Support\Facades\Gate;
 
 class PermissionController extends Controller
 {
+    /**
+     * Initialize the PermissionController with middleware that sets the authenticated user.
+     */
+    public function __construct()
+    {
+        $this->user = auth()->user();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        Gate::authorize('view', $this->user);
         return Inertia::render('Admin/Permissions/Index',[
             'permissions' => PermissionResource::collection(Permission::all()),
         ]);
@@ -26,6 +35,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', $this->user);
         return Inertia::render('Admin/Permissions/Create');
     }
 
@@ -34,6 +44,7 @@ class PermissionController extends Controller
      */
     public function store(PermissionRequest $request)
     {
+        Gate::authorize('create', $this->user);
         Permission::create($request->validated());
         return to_route('admin.permissions.index');
     }
@@ -43,6 +54,7 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
+        Gate::authorize('update', $this->user);
         return Inertia::render('Admin/Permissions/Edit', [
             'permission' => new PermissionResource($permission)
         ]);
@@ -53,6 +65,7 @@ class PermissionController extends Controller
      */
     public function update(PermissionRequest $request, Permission $permission)
     {
+        Gate::authorize('update', $this->user);
         $permission->update($request->validated());
 
         return to_route('admin.permissions.index');
@@ -64,7 +77,9 @@ class PermissionController extends Controller
     public function destroy(string $id)
     {
         $permission = Permission::findById($id);
+        Gate::authorize('delete', $this->user);
         $permission->delete();
         return to_route('admin.permissions.index');
     }
 }
+

@@ -14,14 +14,24 @@ use Inertia\Inertia;
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
+    /**
+     * Initialize the PermissionController with middleware that sets the authenticated user.
+     */
+    public function __construct()
+    {
+        $this->user = auth()->user();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        Gate::authorize('view', $this->user);
         return Inertia::render('Admin/Users/Index', [
             'users' => UserSharedResource::collection(User::all()),
         ]);
@@ -32,6 +42,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', $this->user);
         return Inertia::render('Admin/Users/Create', [
             'roles' => RoleResource::collection(Role::all()),
             'permissions' => PermissionResource::collection(Permission::all())
@@ -43,6 +54,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('create', $this->user);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:' . User::class,
@@ -64,6 +76,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        Gate::authorize('update', $this->user);
         $user->load(['roles', 'permissions']);
         return Inertia::render('Admin/Users/Edit', [
             'user' => new UserResource($user),
@@ -77,6 +90,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        Gate::authorize('update', $this->user);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|' . Rule::unique('users', 'email')->ignore($user),
@@ -100,6 +114,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        Gate::authorize('delete', $this->user);
         $user->delete();
         return to_route('admin.users.index');
     }

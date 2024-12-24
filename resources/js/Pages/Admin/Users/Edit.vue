@@ -134,7 +134,7 @@ watch(
                         <TableRow v-for="userPermission in user.permissions" :key="userPermission.id" class="border-b">
                             <TableData>{{ userPermission.id }}</TableData>
                             <TableData>{{ userPermission.name }}</TableData>
-                            <TableData class="space-x-4">
+                            <TableData class="space-x-4" v-if="$hasPermission('destroy.user.permission')">
                                 <Link :href="route('admin.users.permissions.destroy', [user.id, userPermission.id])"
                                     method="DELETE" as="button" class="text-red-400 hover:text-red-600" preserve-scroll>
                                 Revoke</Link>
