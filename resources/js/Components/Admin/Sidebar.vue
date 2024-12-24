@@ -81,29 +81,16 @@ defineProps({
                     </li>
                 </ul>
             </div>
-            <div>
-                <div class="px-6 -mx-6 pt-4 flex justify-between items-center border-t" title="Back to User Dashboard">
-                    <Link :href="route('dashboard')" as="button"
-                        class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group cursor-pointer hover:text-sky-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
-                        </svg>
-                    <span class="group-hover:text-sky-600">User Dashboard</span>
-                    </Link>
-                </div>
-                <div class="px-6 -mx-6 flex justify-between items-center border-t">
-                    <Link :href="route('logout')" method="post" as="button"
-                        class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group cursor-pointer hover:text-sky-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                    </svg>
-                    <span class="group-hover:text-sky-600">Logout</span>
-                    </Link>
-                </div>
+            <div class="px-6 -mx-6 mt-4 flex justify-between items-center border-t">
+                <Link :href="route('logout')" method="post" as="button"
+                    class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group cursor-pointer hover:text-sky-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span class="group-hover:text-sky-600">Logout</span>
+                </Link>
             </div>
         </aside>
     </div>

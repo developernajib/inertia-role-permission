@@ -5,12 +5,12 @@ import { Head } from '@inertiajs/vue3';
 
 <template>
 
-    <Head title="Admin Dashboard" />
+    <Head title="Dashboard" />
 
     <AdminLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight  dark:text-gray-200">
-                Admin Dashboard
+                Dashboard
             </h2>
         </template>
 
