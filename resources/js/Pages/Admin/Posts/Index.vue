@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
-import { Head, Link, useForm } from "@inertiajs/vue3";
+import { Head, Link, useForm, router, WhenVisible } from "@inertiajs/vue3";
 import { usePermission } from "@/composables/permissions";
 import Table from "@/Components/Admin/Table.vue";
 import TableRow from "@/Components/Admin/chunks/TableRow.vue";
@@ -11,7 +11,10 @@ import Modal from "@/Components/Admin/Modal.vue";
 import DangerButton from "@/Components/Admin/DangerButton.vue";
 import SecondaryButton from "@/Components/Admin/SecondaryButton.vue";
 
-defineProps(["posts"]);
+defineProps({
+    posts: Array,
+    currentPage: Number,
+});
 const form = useForm({});
 const showConfirmDeletePostModal = ref(false);
 const postToDelete = ref(null);
@@ -31,6 +34,10 @@ const deletePost = () => {
         onSuccess: () => closeModal(),
     });
 };
+
+router.reload({
+    reset: ["posts"],
+});
 </script>
 
 <template>
@@ -89,6 +96,22 @@ const deletePost = () => {
                         </TableRow>
                     </template>
                 </Table>
+                <WhenVisible
+                    always
+                    :params="{
+                        data: {
+                            page: currentPage + 1,
+                        },
+                        only: ['posts', 'currentPage'],
+                        preserveUrl: false,
+                    }"
+                >
+                    <template #fallback>
+                        <div class="flex justify-center my-6">
+                            <div class="loader ease-linear rounded-full border-8 border-t-8 border-slate-300 dark:border-slate-600 h-12 w-12"></div>
+                        </div>
+                    </template>
+                </WhenVisible>
             </div>
         </div>
     </AdminLayout>

@@ -19,8 +19,17 @@ class UserSharedResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'roles' => $this->getRoleNames(),
-            'permissions' => $this->getAllPermissions()->pluck('name'),
+            'permissions' => $this->isAdmin() ? [] : $this->getAllPermissions()->pluck('name'),
             'created_at' => $this->created_at->diffForHumans(),
         ];
+    }
+
+    private function isAdmin(): bool
+    {
+        $adminRoles = ['admin', 'super admin', 'super-admin'];
+        return $this->getRoleNames()
+            ->map(fn($role) => strtolower($role))
+            ->intersect($adminRoles)
+            ->isNotEmpty();
     }
 }

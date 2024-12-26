@@ -22,9 +22,10 @@ class PostController extends Controller
     public function index()
     {
         Gate::authorize('view', $this->user);
-        $posts = Post::all();
+        $posts = PostResource::collection(Post::paginate(10));
         return Inertia::render('Admin/Posts/Index', [
-            'posts' => PostResource::collection($posts)
+            'posts' => Inertia::defer(fn() => $posts->collection->toArray())->merge(),
+            'currentPage' => $posts->resource->currentPage(),
         ]);
     }
 
